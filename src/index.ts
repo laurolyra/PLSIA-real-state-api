@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!**');
 });
 
+const houseRouter = require('./routes/houses');
+
+app.use('/houses', houseRouter);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
