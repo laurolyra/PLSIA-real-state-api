@@ -1,12 +1,14 @@
-const express = require('express');
+import express from 'express';
+import { Request, Response } from 'express';
+
+import houseRouter from './routes/houses';
+
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!**');
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!*');
 });
-
-const houseRouter = require('./routes/houses');
 
 app.use('/houses', houseRouter);
 
