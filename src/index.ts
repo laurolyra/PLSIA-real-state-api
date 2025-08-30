@@ -1,16 +1,16 @@
 import express from 'express';
 import { Request, Response } from 'express';
 
-import houseRouter from './routes/houses';
+import residencialRouter from './routes/residencial';
 
 const app = express();
 const port = 3000;
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!*');
+  res.status(200).json({ message: 'Hello World!*' });
 });
 
-app.use('/houses', houseRouter);
+app.use('/residencial', residencialRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
