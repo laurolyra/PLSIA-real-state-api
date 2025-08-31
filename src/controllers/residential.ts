@@ -1,5 +1,59 @@
+import { PropertySchema } from '../schemas/residencial';
+
+interface Property {
+  price: number;
+  address: string;
+}
+
+export const residencialFindAll = async () => {
+  try {
+    const residenceData = await simulateGetAll();
+    return {
+      success: true,
+      data: residenceData,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Erro desconhecido',
+      message: 'Falha ao buscar imóvel',
+    };
+  }
+};
+
+const simulateGetAll = async (): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      try {
+        resolve([
+          {
+            id: '123',
+            address: 'Rua das Flores, 123',
+            price: 250000,
+            bedrooms: 3,
+            bathrooms: 2,
+            area: 120,
+            type: 'Casa',
+          },
+          {
+            id: '456',
+            address: 'Av. Principal, 789',
+            price: 180000,
+            bedrooms: 2,
+            bathrooms: 1,
+            area: 80,
+            type: 'Apartamento',
+          },
+        ]);
+      } catch {
+        reject(new Error('Imóvel não encontrado'));
+      }
+    }, 3000);
+  });
+};
+
 // Simulação de uma operação assíncrona complexa
-const residencialFind = async (id: string) => {
+export const residencialFind = async (id: string) => {
   try {
     // Simula validação do ID
     if (!id || id.trim() === '') {
@@ -77,4 +131,10 @@ const processHouseData = async (house: any): Promise<any> => {
   });
 };
 
-export default residencialFind;
+export const residencialCreate = async ({ price, address }: Property) => {
+  return {
+    success: true,
+    data: { testt: 'ok', price, address },
+    message: 'Imóvel postado com sucesso',
+  };
+};

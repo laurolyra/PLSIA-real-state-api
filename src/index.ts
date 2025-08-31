@@ -4,6 +4,9 @@ import { Request, Response } from 'express';
 import residencialRouter from './routes/residencial';
 
 const app = express();
+
+app.use(express.json());
+
 const port = 3000;
 
 app.get('/', (req: Request, res: Response) => {
